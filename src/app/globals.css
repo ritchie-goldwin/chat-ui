@@ -2,26 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  body {
+    @apply bg-bgLight dark:bg-bgDark text-textDark;
+  }
+  h1 {
+    @apply text-5xl;
+  }
+  a {
+    @apply underline;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  .header-text {
+    @apply font-extrabold text-transparent bg-clip-text bg-gradient-to-l;
+  }
+  .input {
+    @apply w-full rounded-md outline-none dark:bg-transparent bg-transparent p-3 placeholder:text-base text-textLight dark:text-textDark placeholder:text-[#818181] dark:placeholder:text-[#BEBEBE];
+  }
+  .chat-box {
+    @apply relative bg-cgRed w-fit p-4 rounded-lg rounded-tr-none self-end;
+  }
+
+  .loader {
+    @apply border-4 border-quickSilver border-t-4 border-t-cgRed rounded-full w-[50px] h-[50px] animate-loader;
+  }
+
+  .modal {
+    @apply relative shadow-modal bg-bgLight dark:bg-bgDark rounded-lg border-0 p-0 max-h-[80%] max-w-[80%];
+  }
+  .modal-closing {
+    @apply animate-modalClose;
+  }
+  .modal-container {
+    @apply p-8;
+  }
+  .modal-backdrop {
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-modalBackdrop animate-none;
+  }
 }
